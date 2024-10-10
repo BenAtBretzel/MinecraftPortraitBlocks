@@ -246,7 +246,10 @@ def main():
         add_block(block_name, block_texture, verbose=args.verbose)
         new_blocks.append(block_name)
     new_blocks.sort()
-    print(f'Successfully added {args.count} new block(s):\r\n{json.dumps(new_blocks)}')
+    print(
+        f"Successfully added {len(new_blocks)} new block(s):\r\n{json.dumps(new_blocks)}"
+    )
+
 
 # Run main when we start this program
 if __name__ == "__main__":
