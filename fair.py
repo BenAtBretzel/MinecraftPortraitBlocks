@@ -63,7 +63,6 @@ def add_block(
         terrain["texture_data"][normalized_name] = {
             "textures": "textures/blocks/" + normalized_name
         }
-        fd.seek(0)
         fd.write(json.dumps(terrain))
 
     # Set the textures for each face of the new block
@@ -80,7 +79,6 @@ def add_block(
                 "west": normalized_name,
             },
         }
-        fd.seek(0)
         fd.write(json.dumps(blocks))
 
     if verbose:
