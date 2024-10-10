@@ -12,8 +12,10 @@ from PIL import Image
 
 # Inspired by https://learn.microsoft.com/en-us/minecraft/creator/documents/addcustomdieblock?view=minecraft-bedrock-stable
 EAGLE_ITEM_NAME = "Eagle"
+LIGHTING_LEVEL = 4
 NAMESPACE = "ade_career_fair:"
 PHOTO_SIZE = 256
+PREVIEW_SIZE = 700
 TEXTURE_SIZE = 128
 
 BEHAVIOR_BLOCKS_DIR = R"C:\Users\mbpar\AppData\Local\Packages\Microsoft.MinecraftUWP_8wekyb3d8bbwe\LocalState\games\com.mojang\development_behavior_packs\fair_behavior_pack\blocks\\"
@@ -40,7 +42,7 @@ def add_block(
                 "identifier": NAMESPACE + normalized_name,
                 "menu_category": {"category": "construction"},
             },
-            "components": {"minecraft:light_emission": 3},
+            "components": {"minecraft:light_emission": LIGHTING_LEVEL},
         },
     }
     with open(BEHAVIOR_BLOCKS_DIR + normalized_name + ".json", "x") as fd:
@@ -132,7 +134,7 @@ def promt_photo(verbose: bool = False):
             # Shrink to fit as a Minecraft texture
             texture_img = img.resize((PHOTO_SIZE, PHOTO_SIZE))
             # Scale up for preview
-            preview_img = texture_img.resize((700, 700), Image.NEAREST)
+            preview_img = texture_img.resize((PREVIEW_SIZE, PREVIEW_SIZE), Image.NEAREST)
 
             # Display the preview
             cv2.imshow(
