@@ -30,7 +30,7 @@ def add_block(
     """
     normalized_name = normalize_name(name)
 
-    # Behavior Def
+    # Block behavior definition
     behavior_json = {
         "format_version": "1.19.30",
         "minecraft:block": {
@@ -44,15 +44,15 @@ def add_block(
     with open(BEHAVIOR_BLOCKS_DIR + normalized_name + ".json", "x") as fd:
         fd.write(json.dumps(behavior_json))
 
-    # Display Name
+    # Translate the block identier into a name
     with open(LANG_FILE, "a") as fd:
         fd.write("tile.%s.name=%s\r\n" % (NAMESPACE + normalized_name, name))
 
-    # Save texture
+    # Save the image into the resource pack block textures folder
     if save_texture:
         texture.save(RESOURCE_BLOCK_DIR + normalized_name + ".png", "PNG")
 
-    # Friendly name
+    # Set the name of the new texture to be used/referenced when we set block textures
     with open(TERRAIN_FILE, "r") as fd:
         terrain = json.load(fd)
     with open(TERRAIN_FILE, "w+") as fd:
@@ -62,12 +62,11 @@ def add_block(
         fd.seek(0)
         fd.write(json.dumps(terrain))
 
-    # Set new block textures
+    # Set the textures for each face of the new block
     with open(RESOURCE_BLOCKS_FILE, "r") as fd:
         blocks = json.load(fd)
     with open(RESOURCE_BLOCKS_FILE, "w+") as fd:
         blocks[NAMESPACE + normalized_name] = {
-            # 'textures': normalized_name
             "textures": {
                 "up": normalize_name(EAGLE_ITEM_NAME),
                 "down": normalize_name(EAGLE_ITEM_NAME),
@@ -80,7 +79,11 @@ def add_block(
         fd.seek(0)
         fd.write(json.dumps(blocks))
 
-    print("/give @s %s%s" % (NAMESPACE, normalized_name))
+    if verbose:
+        print(
+            "Added new block, give to self with: /give @s %s%s"
+            % (NAMESPACE, normalized_name)
+        )
 
 
 def add_eagle(verbose: bool = False):
@@ -190,7 +193,7 @@ def reset(verbose: bool = False):
     for name in os.listdir(RESOURCE_BLOCK_DIR):
         if name == "eagle.png":
             continue
-        path = os.path.join(BEHAVIOR_BLOCKS_DIR, name)
+        path = os.path.join(RESOURCE_BLOCK_DIR, name)
         try:
             if name.endswith(".png") and os.path.isfile(path):
                 os.remove(path)
