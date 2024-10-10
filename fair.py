@@ -108,7 +108,7 @@ def normalize_name(name: str):
     return re.sub(R"\s+", "_", name).lower()
 
 
-def promt_photo(verbose: bool = False):
+def prompt_photo(verbose: bool = False):
     """
     Prompt for then return a photo from the web camera.
     """
@@ -149,7 +149,7 @@ def promt_photo(verbose: bool = False):
 
             if waitKey in [8, 27, ord("q"), ord("Q")]:
                 # Exit if backspace, escape, or Q
-                exit(21)
+                raise SystemExit('User quit image prompt')
             elif waitKey in [13, 32]:
                 # Return frame if space or enter
                 return texture_img
@@ -160,7 +160,7 @@ def promt_photo(verbose: bool = False):
         cv2.destroyAllWindows()
 
 
-def promt_name(
+def prompt_name(
     title: str = "Create New Minecraft Block",
     prompt: str = "Please enter your full name",
 ):
@@ -239,14 +239,14 @@ def main():
         return reset(args.verbose)
 
     if not 0 < args.count < 51:
-        raise "Count must be between 1 and 50, got: " + args.count
+        raise ValueError(f"Count must be between 1 and 50, got: {args.count}")
 
     new_blocks = []
     if add_eagle():
         new_blocks.append(EAGLE_ITEM_NAME)
     for idx in range(0, args.count):
-        block_name = promt_name()
-        block_texture = promt_photo(verbose=args.verbose)
+        block_name = prompt_name()
+        block_texture = prompt_photo(verbose=args.verbose)
         add_block(block_name, block_texture, verbose=args.verbose)
         new_blocks.append(block_name)
     new_blocks.sort()
