@@ -22,13 +22,6 @@ RESOURCE_BLOCKS_FILE = R"C:\Users\mbpar\AppData\Local\Packages\Microsoft.Minecra
 TERRAIN_FILE = R"C:\Users\mbpar\AppData\Local\Packages\Microsoft.MinecraftUWP_8wekyb3d8bbwe\LocalState\games\com.mojang\development_resource_packs\fair_resource_pack\textures\terrain_texture.json"
 
 
-def normalize_name(name: str):
-    """
-    Turns a name into a string suitable for file names are minecraft identifiers.
-    """
-    return re.sub(R"\s+", "_", name).lower()
-
-
 def add_block(
     name: str, texture: Image, save_texture: bool = True, verbose: bool = False
 ):
@@ -90,6 +83,27 @@ def add_block(
     print("/give @s %s%s" % (NAMESPACE, normalized_name))
 
 
+def add_eagle(verbose: bool = False):
+    """
+    Add the eagle block and texture used by all other blocks in this mod.
+    """
+    with open(RESOURCE_BLOCKS_FILE, "r") as fd:
+        blocks = json.load(fd)
+        if (NAMESPACE + normalize_name(EAGLE_ITEM_NAME)) in blocks:
+            return False
+
+    texture = Image.open(EAGLE_PATH)
+    add_block(EAGLE_ITEM_NAME, texture, save_texture=False)
+    return True
+
+
+def normalize_name(name: str):
+    """
+    Turns a name into a string suitable for file names are minecraft identifiers.
+    """
+    return re.sub(R"\s+", "_", name).lower()
+
+
 def promt_photo(verbose: bool = False):
     """
     Prompt for then return a photo from the web camera.
@@ -147,20 +161,6 @@ def promt_name(
     prompt: str = "Please enter your full name",
 ):
     return simpledialog.askstring(title, prompt)
-
-
-def add_eagle(verbose: bool = False):
-    """
-    Add the eagle block and texture used by all other blocks in this mod.
-    """
-    with open(RESOURCE_BLOCKS_FILE, "r") as fd:
-        blocks = json.load(fd)
-        if (NAMESPACE + normalize_name(EAGLE_ITEM_NAME)) in blocks:
-            return False
-
-    texture = Image.open(EAGLE_PATH)
-    add_block(EAGLE_ITEM_NAME, texture, save_texture=False)
-    return True
 
 
 def reset(verbose: bool = False):
