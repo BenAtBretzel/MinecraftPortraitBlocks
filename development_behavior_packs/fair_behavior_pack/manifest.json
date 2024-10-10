@@ -1,0 +1,25 @@
+{
+    "format_version": 2,
+    "header": {
+      "description": "Adelaide Career Fair",
+      "name": "Adelaide Career Fair",
+      "uuid":"42d0ac3e-9316-4ba0-a93f-46e5b2ba18ae",
+      "version": [1, 0, 0],
+      "min_engine_version": [1, 16, 0]
+    },
+    "modules":
+      [
+        {
+          "description": "Portraits",
+            "type": "data",
+            "uuid": "c6e57ed1-f804-4e07-8eb2-fc61a8d410c7",
+            "version": [1, 0, 0]
+        }
+      ],
+    "dependencies": [
+      {
+       "uuid":"4cda9410-af94-49ae-a0da-31cd084d508d",
+        "version":[1,0,0]
+      }
+   ]
+  }

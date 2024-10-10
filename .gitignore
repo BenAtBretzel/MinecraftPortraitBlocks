@@ -1,0 +1,10 @@
+behavior_packs
+minecraftpe
+minecraftWorlds
+resource_packs
+skin_packs
+world_templates
+*.dat
+
+development_resource_packs/fair_resource_pack/textures/blocks/*.png
+!development_resource_packs/fair_resource_pack/textures/blocks/eagle.png
