@@ -1,8 +1,8 @@
-Unless otherwise specified, all files inherit (bedrock-samples/LICENSE.md)[https://github.com/Mojang/bedrock-samples/blob/main/LICENSE.md].
+Unless otherwise specified, all files inherit [bedrock-samples/LICENSE.md](https://github.com/Mojang/bedrock-samples/blob/main/LICENSE.md).
 
 ---
 
-(fair.py)[fair.py] has no relationship to Mojang or Minecraft and is the sole work of Ben Paretzky.  The license is as follows:
+[fair.py](fair.py) has no relationship to Mojang or Minecraft and is the sole work of Ben Paretzky.  The license is as follows:
 
 Permission to use, copy, modify, and/or distribute this software for
 any purpose with or without fee is hereby granted.
@@ -17,4 +17,4 @@ OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
 ---
 
-(development_resource_packs/fair_resource_pack/textures/blocks/eagle.png)[development_resource_packs/fair_resource_pack/textures/blocks/eagle.png] has no relationship to Mojang, Minecraft, or Ben Paretzky and is the sole property of (Federal Way Public Schools)[https://fwps.org].
+[development_resource_packs/fair_resource_pack/textures/blocks/eagle.png](development_resource_packs/fair_resource_pack/textures/blocks/eagle.png) has no relationship to Mojang, Minecraft, or Ben Paretzky and is the sole property of [Federal Way Public Schools](https://fwps.org).
