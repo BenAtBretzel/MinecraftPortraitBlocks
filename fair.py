@@ -1,3 +1,5 @@
+# To follow how this works, start with `def main()`
+
 import argparse
 import json
 import os
@@ -46,11 +48,11 @@ def add_block(
 
     # Translate the block identier into a name
     with open(LANG_FILE, "a") as fd:
-        fd.write("tile.%s.name=%s\r\n" % (NAMESPACE + normalized_name, name))
+        fd.write(f"tile.{NAMESPACE}{normalized_name}.name={name}\r\n")
 
     # Save the image into the resource pack block textures folder
     if save_texture:
-        texture.save(RESOURCE_BLOCK_DIR + normalized_name + ".png", "PNG")
+        texture.save(f"{RESOURCE_BLOCK_DIR}{normalized_name}.png", "PNG")
 
     # Set the name of the new texture to be used/referenced when we set block textures
     with open(TERRAIN_FILE, "r") as fd:
@@ -80,10 +82,7 @@ def add_block(
         fd.write(json.dumps(blocks))
 
     if verbose:
-        print(
-            "Added new block, give to self with: /give @s %s%s"
-            % (NAMESPACE, normalized_name)
-        )
+        print(f"Added new block, give to self with: /give @s {NAMESPACE}{normalized_name}")
 
 
 def add_eagle(verbose: bool = False):
@@ -181,7 +180,7 @@ def reset(verbose: bool = False):
                 count = count + 1
         except:
             pass
-    print("Removed %s block behavior jsons" % count)
+    print(f"Removed {count} block behavior jsons")
 
     # Clear lang file
     with open(LANG_FILE, "w") as fd:
@@ -200,7 +199,7 @@ def reset(verbose: bool = False):
                 count = count + 1
         except:
             pass
-    print("Removed %s block textures" % count)
+    print(f"Removed {count} block textures")
 
     # Clean up terrain textures
     with open(TERRAIN_FILE, "r") as fd:
